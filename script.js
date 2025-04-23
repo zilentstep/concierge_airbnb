@@ -36,8 +36,12 @@ function sendMessage() {
         .then(data => {
             // **สำคัญ:** ตรวจสอบโครงสร้างของข้อมูลที่ n8n ส่งกลับมา
             // สมมติว่า n8n ส่งกลับมาในรูปแบบ { reply: "ข้อความตอบกลับจากบอท" }
-            if (data && data.reply) {
+           if (typeof data === 'string') { // ตรวจสอบว่าเป็น String
+                displayBotMessage(data);
+                displayBotMessage('reply is not "STRING"');
+            } else if (data && data.reply) { // ยังคงตรวจสอบ data.reply เผื่อกรณีอื่น
                 displayBotMessage(data.reply);
+                displayBotMessage('reply is not "reply"');
             } else {
                 displayBotMessage('บอทไม่สามารถตอบกลับได้ในขณะนี้');
                 console.error('รูปแบบการตอบกลับจาก n8n ไม่ถูกต้อง:', data);
