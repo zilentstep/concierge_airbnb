@@ -39,8 +39,11 @@ function sendMessage() {
         .then(data => {
             // Remove the thinking bubble
             removeThinkingBubble();
-            if (data && data.text) {
-                displayBotMessage(data.text);
+            console.log('Data from n8n:', data); // เก็บไว้เพื่อดูข้อมูล
+
+            // ตรวจสอบว่า data เป็น Object และมี Property ชื่อ 'BackUser'
+            if (typeof data === 'object' && data !== null && data.BackUser) {
+                displayBotMessage(data.BackUser);
             } else {
                 displayBotMessage('บอทไม่สามารถตอบกลับได้ในขณะนี้');
                 console.error('รูปแบบการตอบกลับจาก n8n ไม่ถูกต้อง:', data);
