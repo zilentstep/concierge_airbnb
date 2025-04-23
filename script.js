@@ -34,14 +34,13 @@ function sendMessage() {
             return response.json();
         })
         .then(data => {
-            // **สำคัญ:** ตรวจสอบโครงสร้างของข้อมูลที่ n8n ส่งกลับมา
-            // สมมติว่า n8n ส่งกลับมาในรูปแบบ { reply: "ข้อความตอบกลับจากบอท" }
-           if (data && data.response) { // เปลี่ยนจาก data.reply เป็น data.response
-                displayBotMessage(data.response);
+            if (Array.isArray(data) && data.length > 0 && data[0].json && data[0].json.text) {
+                displayBotMessage(data[0].json.text);
             } else {
                 displayBotMessage('บอทไม่สามารถตอบกลับได้ในขณะนี้');
                 console.error('รูปแบบการตอบกลับจาก n8n ไม่ถูกต้อง:', data);
             }
+        })
         })
         .catch(error => {
             console.error('เกิดข้อผิดพลาดในการส่งข้อความไปยัง n8n:', error);
