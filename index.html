@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>n8n Chatbot</title>
+    <title>AI Chatbot</title>
     <link
       href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css"
       rel="stylesheet"
@@ -14,10 +14,19 @@
         padding: 0;
         height: 100%;
         width: 100%;
+        background-color: #f8f8f8;
+        font-family: sans-serif;
       }
+
       #chat-container {
         height: 100vh;
         width: 100vw;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .n8n-chat-launcher {
+        display: none !important; /* Hide the floating chat icon */
       }
     </style>
   </head>
@@ -27,9 +36,10 @@
       import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
 
       createChat({
-        webhookUrl: 'https://automation.guitarjkp.me/webhook/33256a88-dc76-4f8a-bfb8-a117fe433f8a/chat',
+        webhookUrl: 'YOUR_N8N_CHAT_TRIGGER_WEBHOOK_URL',
         container: document.getElementById('chat-container'),
-        fullscreen: true
+        fullscreen: true,
+        openOnLoad: true, // Ensures chat is immediately visible
       });
     </script>
   </body>
