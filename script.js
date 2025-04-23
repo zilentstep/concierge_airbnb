@@ -16,6 +16,9 @@ function sendMessage() {
         displayUserMessage(messageText);
         messageInput.value = '';
 
+        // Display the thinking bubble
+        displayThinkingBubble();
+
         // ส่งข้อความไปยัง n8n backend
         fetch(n8nWebhookUrl, {
             method: 'POST',
@@ -34,6 +37,8 @@ function sendMessage() {
             return response.json();
         })
         .then(data => {
+            // Remove the thinking bubble
+            removeThinkingBubble();
             if (data && data.text) {
                 displayBotMessage(data.text);
             } else {
@@ -42,6 +47,8 @@ function sendMessage() {
             }
         })
         .catch(error => {
+            // Remove the thinking bubble in case of an error
+            removeThinkingBubble();
             console.error('เกิดข้อผิดพลาดในการส่งข้อความไปยัง n8n:', error);
             displayBotMessage('ขออภัย มีข้อผิดพลาดในการสื่อสารกับบอท');
         });
@@ -62,6 +69,22 @@ function displayBotMessage(message) {
     botDiv.textContent = message;
     chatMessages.appendChild(botDiv);
     scrollToBottom();
+}
+
+function displayThinkingBubble() {
+    const thinkingBubble = document.createElement('div');
+    thinkingBubble.id = 'thinking-bubble';
+    thinkingBubble.classList.add('message', 'bot-message', 'thinking');
+    thinkingBubble.innerHTML = '<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
+    chatMessages.appendChild(thinkingBubble);
+    scrollToBottom();
+}
+
+function removeThinkingBubble() {
+    const thinkingBubble = document.getElementById('thinking-bubble');
+    if (thinkingBubble) {
+        thinkingBubble.remove();
+    }
 }
 
 function scrollToBottom() {
