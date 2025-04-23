@@ -37,7 +37,7 @@ function sendMessage() {
                 displayBotMessage('บอทไม่สามารถตอบกลับได้ในขณะนี้');
                 console.error('รูปแบบการตอบกลับจาก n8n ไม่ถูกต้อง:', data);
             }
-        })
+        }
         })
         .catch(error => {
             console.error('เกิดข้อผิดพลาดในการส่งข้อความไปยัง n8n:', error);
