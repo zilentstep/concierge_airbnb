@@ -34,10 +34,7 @@ function sendMessage() {
             return response.json();
         })
         .then(data => {
-            console.log('Data from n8n:', data); // เก็บไว้เพื่อดูข้อมูล
-
-            // ตรวจสอบว่า data เป็น Object และมี Property ชื่อ 'text'
-            if (typeof data === 'object' && data !== null && data.text) {
+            if (data && data.text) {
                 displayBotMessage(data.text);
             } else {
                 displayBotMessage('บอทไม่สามารถตอบกลับได้ในขณะนี้');
