@@ -78,3 +78,26 @@ body {
 .send-button:hover {
     background-color: #0056b3;
 }
+
+/* Existing CSS */
+
+.thinking {
+    background-color: #f0f0f0;
+    text-align: center; /* Center the dots */
+}
+
+.thinking .dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #ccc;
+    margin: 0 3px;
+    animation: pulse 1.5s infinite; /* Add animation */
+}
+
+@keyframes pulse {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { opacity: 0.5; }
+}
