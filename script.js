@@ -27,6 +27,12 @@ function sendMessage() {
                 // คุณสามารถส่งข้อมูลอื่นๆ เพิ่มเติมได้ที่นี่ เช่น sessionId
             }),
         })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        })
         .then(data => {
             console.log('Data from n8n:', data); // เก็บไว้เพื่อดูข้อมูล
 
@@ -37,7 +43,6 @@ function sendMessage() {
                 displayBotMessage('บอทไม่สามารถตอบกลับได้ในขณะนี้');
                 console.error('รูปแบบการตอบกลับจาก n8n ไม่ถูกต้อง:', data);
             }
-        }
         })
         .catch(error => {
             console.error('เกิดข้อผิดพลาดในการส่งข้อความไปยัง n8n:', error);
