@@ -27,15 +27,12 @@ function sendMessage() {
                 // คุณสามารถส่งข้อมูลอื่นๆ เพิ่มเติมได้ที่นี่ เช่น sessionId
             }),
         })
-        .then(response => {
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            return response.json();
-        })
         .then(data => {
-            if (Array.isArray(data) && data.length > 0 && data[0].json && data[0].json.text) {
-                displayBotMessage(data[0].json.text);
+            console.log('Data from n8n:', data); // เก็บไว้เพื่อดูข้อมูล
+
+            // ตรวจสอบว่า data เป็น Object และมี Property ชื่อ 'text'
+            if (typeof data === 'object' && data !== null && data.text) {
+                displayBotMessage(data.text);
             } else {
                 displayBotMessage('บอทไม่สามารถตอบกลับได้ในขณะนี้');
                 console.error('รูปแบบการตอบกลับจาก n8n ไม่ถูกต้อง:', data);
