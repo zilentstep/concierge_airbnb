@@ -1,56 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Airbnb Virtual Assistant</title>
-    <link href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css" rel="stylesheet" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>n8n Chatbot</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/@n8n/chat/dist/style.css"
+      rel="stylesheet"
+    />
     <style>
-        /* Basic styling to make the chat container visible */
-        html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            font-family: sans-serif; /* Add a default font */
-            display: flex; /* Optional: center the chat container */
-            justify-content: center; /* Optional: center the chat container */
-            align-items: center; /* Optional: center the chat container */
-            background-color: #f4ff00; /* Optional: background for the page */
-        }
-
-        #chat-container {
-            width: 90%; /* Adjust width as needed */
-            max-width: 500px; /* Optional: max width */
-            height: 85vh; /* Adjust height as needed */
-            border: 1px solid #ccc; /* Optional: border */
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* Optional: shadow */
-            border-radius: 8px; /* Optional: rounded corners */
-            overflow: hidden; /* Ensure content stays within borders */
-        }
+      html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        width: 100%;
+      }
+      #chat-container {
+        height: 100vh;
+        width: 100vw;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div id="chat-container"></div>
-
     <script type="module">
-        import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
+      import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat/dist/chat.bundle.es.js';
 
-        createChat({
-            webhookUrl: 'https://automation.guitarjkp.me/webhook/33256a88-dc76-4f8a-bfb8-a117fe433f8a/chat',
-            title: 'Airbnb Stay Assistant',
-            subtitle: 'Ask me anything about your stay',
-            primaryColor: '#FF5A5F',
-
-            // 2. Tell createChat to render inside the container
-            // NOTE: The option name might be different! Common names are 'element', 'target', 'container'.
-            // Check the @n8n/chat documentation for the correct option.
-            element: '#chat-container'
-
-            // Alternative options you might need to check documentation for:
-            // mode: 'embedded', // If an 'element' option doesn't exist
-            // showLauncher: false, // To hide the default button (might be needed with other options)
-            // initialState: 'open' // To ensure it's open (might be needed with other options)
-        });
+      createChat({
+        webhookUrl: 'https://automation.guitarjkp.me/webhook/33256a88-dc76-4f8a-bfb8-a117fe433f8a/chat',
+        container: document.getElementById('chat-container'),
+        fullscreen: true
+      });
     </script>
-</body>
+  </body>
 </html>
